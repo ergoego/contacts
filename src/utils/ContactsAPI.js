@@ -1,6 +1,6 @@
 const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:5001'
 
-let token - localStorage.token
+let token = localStorage.token
 
 if (!token)
 	token = localStorage.token = Math.random().toString(36).substr(-8)
@@ -11,17 +11,17 @@ const headers = {
 }
 
 export const getAll = () =>
-	fetch('${api}/contacts', { headers })
+	fetch(`${api}/contacts`, { headers })
 		.then(res => res.json())
 		.then(data => data.contacts)
 
 export const remove = (contact) =>
-	fetch('${api}/contacts/${contact.id}', { method: 'DELETE', headers })
+	fetch(`${api}/contacts/${contact.id}`, { method: 'DELETE', headers })
 		.then(res => res.json())
 		.then(data => data.contact)
 
 export const create = (body) =>
-	fetch('${api}/contacts', {
+	fetch(`${api}/contacts`, {
 		method: 'POST',
 		headers: {
 			...headers,
