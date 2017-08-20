@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 const readFileAsDataURL = (file) =>
@@ -16,7 +16,7 @@ const resizeImage = (imageURL, canvas, maxHeight) =>
 	new Promise(resolve => {
 		const image = new Image()
 
-			image.onload = ( => {
+			image.onload = () => {
 				const context = canvas.getContext('2d')
 
 				if (image.height > maxHeight) {
@@ -39,7 +39,7 @@ const resizeImage = (imageURL, canvas, maxHeight) =>
 * A custom <input> that dynamically reads and resizes image files before 
 * submitting them to the server as data URLs. Also, shows a preview of the image.
 */
-class ImageInput extends React.component {
+class ImageInput extends Component {
 	static propTypes = {
 		className: PropTypes.string,
 		name: PropTypes.string,
@@ -94,7 +94,7 @@ class ImageInput extends React.component {
 
 		return (
 			<div className ={className} style={style}>
-				<input type="hidden" name={name} value={value} \>
+				<input type="hidden" name={name} value={value} />
 				<input
 					ref={node => this.fileInput = node}
 					type="file"
