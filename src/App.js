@@ -20,6 +20,14 @@ removeContact = (contact) => {
 
   ContactsAPI.remove(contact)
 }
+createContact = (contact) => {
+  ContactsAPI.create(contact).then(contact => {
+    this.setState(state => ({
+      contacts: state.contacts.concat([ contact ])
+    }))
+  })
+}
+
   render() {
     return (
       <div className="app">
@@ -29,7 +37,14 @@ removeContact = (contact) => {
             contacts={this.state.contacts} 
           />
         )}/>
-        <Route path='/create' component ={CreateContact}/> 
+        <Route path='/create' render={({ history }) => (
+            <CreateContact
+              onCreateContact={(contact) => {
+                this.createContact(contact)
+                history.push('/')
+              }}
+            />
+        )}/>
       </div>
     ) // the Route path name must equal the state name. This is how a state change is linked to fetching a component(s). So we see here that onNavigate() sets the state to 'create', which then automatically is associated with the route /create, and that route fetches the component specified (in this case, the CreateContact component)
   }

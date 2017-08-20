@@ -51,7 +51,7 @@ class ImageInput extends Component {
 	}
 
 	handleFileChange = (event) => {
-		const file = event. target.files[0]
+		const file = event.target.files[0]
 
 		if (file && file.type.match(/^image\//)){
 			readFileAsDataURL(file).then(originalURL => {
@@ -86,7 +86,7 @@ class ImageInput extends Component {
 		}
 
 		if (value) {
-			style.backgroundImage = 'url("${value}")'
+			style.backgroundImage = `url("${value}")`
 			style.backgroundRepeat = 'no-repeat'
 			style.backgroundPosition = 'center'
 			style.backgroundSize = 'cover'
